@@ -80,8 +80,8 @@ GLOBAL_LIST_EMPTY(all_multi_vehicles)
 		VEHICLE_DRIVER = null
 	)
 
-	// Map file name of the vehicle interior
-	var/interior_map = null
+	// interior map template
+	var/interior_map
 	var/datum/interior/interior = null
 
 	//common passenger slots

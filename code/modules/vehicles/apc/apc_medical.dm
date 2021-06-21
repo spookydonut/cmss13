@@ -5,7 +5,7 @@
 
 	icon_state = "apc_base_med"
 
-	interior_map = "apc_med"
+	interior_map = /datum/map_template/interior/apc_med
 
 	//increased 4->6, because having only 4 passenger slots is not nearly enough, especially if you have also a medic/nurse/synth inside helping with triage
 	passengers_slots = 6

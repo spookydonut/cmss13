@@ -10,6 +10,8 @@ SUBSYSTEM_DEF(mapping)
 
 	var/list/shuttle_templates = list()
 
+	var/list/interior_templates = list()
+
 	var/list/areas_in_z = list()
 
 	var/list/turf/unused_turfs = list()				//Not actually unused turfs they're unused but reserved for use for whatever requests them. "[zlevel_of_turf]" = list(turfs)
@@ -192,6 +194,7 @@ SUBSYSTEM_DEF(mapping)
 		map_templates[T.name] = T
 
 	preloadShuttleTemplates()
+	preloadInteriorTemplates()
 
 /proc/generateMapList(filename)
 	. = list()
@@ -222,6 +225,15 @@ SUBSYSTEM_DEF(mapping)
 			continue
 
 		. += t
+
+/datum/controller/subsystem/mapping/proc/preloadInteriorTemplates()
+	for(var/item in subtypesof(/datum/map_template/interior))
+		var/datum/map_template/interior/interior_type = item
+
+		var/datum/map_template/interior/S = new interior_type()
+
+		interior_templates[S.id] = S
+		map_templates[S.id] = S
 
 /datum/controller/subsystem/mapping/proc/preloadShuttleTemplates()
 	for(var/item in subtypesof(/datum/map_template/shuttle))

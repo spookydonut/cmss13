@@ -15,7 +15,7 @@ GLOBAL_LIST_EMPTY(command_apc_list)
 	bound_x = -32
 	bound_y = -32
 
-	interior_map = "apc"
+	interior_map = /datum/map_template/interior/apc
 
 	passengers_slots = 15
 	xenos_slots = 8

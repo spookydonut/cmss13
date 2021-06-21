@@ -257,6 +257,7 @@
 #include "code\datums\event_info_text.dm"
 #include "code\datums\fluff_emails.dm"
 #include "code\datums\global_variables.dm"
+#include "code\datums\interior_templates.dm"
 #include "code\datums\map_config.dm"
 #include "code\datums\matrix_editor.dm"
 #include "code\datums\medal_awards.dm"

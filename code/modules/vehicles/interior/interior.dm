@@ -20,10 +20,6 @@
 	// How far can we see out windows?
 	var/view_range = 8
 
-	// Convenience vars. Doesn't include view blocker padding
-	var/width = -1
-	var/height = -1
-
 	// Which atom we represent the interior of
 	var/atom/exterior = null
 	// A map template representing the interior
@@ -76,10 +72,15 @@
 	return ..()
 
 // Use this proc to load the template back in
-/datum/interior/proc/create_interior(var/interior_map)
-	if(!isnull(interior_data))
-		return
+/datum/interior/proc/create_interior(datum/map_template/interior/interior_map)
 
+	var/datum/map_template/interior/template = SSmapping.interior_templates[initial(interior_map.id)]
+
+	var/datum/turf_reservation/reservation = SSmapping.RequestBlockReservation(template.width, template.height, SSmapping.transit.z_value, /datum/turf_reservation/transit)
+
+	var/turf/BL = TURF_FROM_COORDS_LIST(reservation.bottom_left_coords)
+	template.load(BL, centered = FALSE)
+/*
 	if(!interior_map)
 		return
 	name = interior_map
@@ -92,10 +93,7 @@
 
 	interior_data = data[1]
 	chunk_id = data[2]
-
-	width = (interior_data.bounds[MAP_MAXX] - interior_data.bounds[MAP_MINX]) + 1
-	height = (interior_data.bounds[MAP_MAXY] - interior_data.bounds[MAP_MINY]) + 1
-
+*/
 	find_entrances()
 	handle_landmarks()
 
